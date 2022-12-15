@@ -5,7 +5,7 @@ import sys
 
 # 定义神经网络的参数
 batch_size = 64   # 一次训练所选取的样本数
-epochs = 1000   # 训练轮数
+epochs = 5   # 训练轮数
 latent_dim = 256  # LSTM的单元个数
 num_samples = 10000   # 训练样本的大小
 data_path = '1_算法示例/datas.txt'   # 数据集路径
