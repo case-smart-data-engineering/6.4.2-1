@@ -185,5 +185,5 @@ def train():
 
 
 if __name__ == '__main__':
-    pass
+    train()
     # 若生成模型model，则正确
