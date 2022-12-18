@@ -188,12 +188,6 @@ def train():
               epochs=epochs,
               validation_split=0.1)
 
-    # 保存模型，方便测试使用
-    model.save('model/s2s.h5')
-    encoder_model.save('model/encoder_model.h5')
-    decoder_model.save('model/decoder_model.h5')
-
-
 def test():
     encoder_model = load_model('model/encoder_model.h5', compile=False)
     decoder_model = load_model('model/decoder_model.h5', compile=False)
