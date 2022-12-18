@@ -191,7 +191,8 @@ def train():
 def test():
     encoder_model = load_model('model/encoder_model.h5', compile=False)
     decoder_model = load_model('model/decoder_model.h5', compile=False)
-    # 提示：因为数据集太小，训练的模型在做测试时效果不好，故在输入要翻译的中文时应选择数据集中给出的句子，例如：难以置信、我爱中国等
+    # 提示：因为数据集太小，训练的模型在做测试时效果不好，故在输入要翻译的中文时应选择数据集中给出的句子
+    # 例如：在"请输入要翻译的中文:"后输入"难以置信"、"我爱中国"
     # 若要翻译的是数据集外的句子，则会结束循环，程序运行结束
     ss = input("请输入要翻译的中文:")
     if ss == '-1':
