@@ -11,7 +11,7 @@ batch_size = 64   # 一次训练所选取的样本数
 epochs = 500    # 训练轮数
 latent_dim = 256  # LSTM的单元个数
 num_samples = 3000   # 训练样本的大小
-data_path = '/workspace/6.5.2-1/1_算法示例/new_datas.txt'   # 数据集路径
+data_path = '/workspace/6.5.2-1/1_算法示例/data.txt'   # 数据集路径
 
 # 输入（源语言）序列，即输入的中文字符串
 input_texts = []
@@ -71,7 +71,7 @@ reverse_target_char_index = dict(
 encoder_input_data = np.zeros(
     (len(input_texts), max_encoder_seq_length, num_encoder_tokens),
     dtype='float32')
-raise Exception("仿照上述代码，补全代码块，decoder_input_data和decoder_out_put_data")
+raise NotImplementedError("仿照上述代码，补全代码块，decoder_input_data和decoder_out_put_data")
 
 # zip('ABC','xyz') ==> Ax By Cz
 # 将输入的中文或英文字符串进行one-hot编码
@@ -96,16 +96,17 @@ def create_model():
     # 丢弃encoder_outputs, 保存state_h,state_c为了输入给decoder
     encoder_state = [state_h, state_c]
 
+    raise NotImplementedError("根据下列提示，补全下述代码块")
     # 定义解码器的输入
-    decoder_inputs = Input(shape=(None, num_decoder_tokens))
+    
     # return_sequences设为True表示会返回其中间状态，在推理输出字符的阶段将是有用的
-    decoder_lstm = LSTM(latent_dim, return_state=True, return_sequences=True)
+    
     # 将编码器输出的状态作为初始解码器的初始状态
-    decoder_outputs, _, _ = decoder_lstm(decoder_inputs, initial_state=encoder_state)
+    
     # 添加全连接层，将输出全连接到num_decoder_tokens（所有的不重复的英文字符）维度上，
     # 激活函数选用'softmax',根据得到的每个字符的概率，判断decoder每一步的输出是什么
-    decoder_dense = Dense(num_decoder_tokens, activation='softmax')
-    decoder_outputs = decoder_dense(decoder_outputs)
+    
+
 
     # 定义整个模型，模型的输入为encoder_inputs, decoder_inputs，输出为decoder_outputs
     model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
@@ -146,7 +147,7 @@ def decode_sequence(input_seq, encoder_model, decoder_model):
         output_tokens, h, c = decoder_model.predict([target_seq] + states_value)
         # output_tokens是下一个字符出现的位置概率
 
-        raise Exception("根据提示，补全下述代码块")
+        raise NotImplementedError("根据下列提示，补全下述代码块")
         # 对下个字符采样  sampled_token_index是要预测下个字符最大概率出现在字典中的位置
         
     
@@ -173,17 +174,21 @@ def decode_sequence(input_seq, encoder_model, decoder_model):
 def train():
     model, encoder_model, decoder_model = create_model()
     # 编译模型
-    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-2), loss='categorical_crossentropy')
+    raise NotImplementedError("补全代码块，编译模型")
     # 训练模型
-    raise Exception("补全代码块")
+    raise NotImplementedError("补全代码块，训练模型")
 
-    # 保存模型，方便测试使用
-    model.save('model/s2s.h5')
-    encoder_model.save('model/encoder_model.h5')
-    decoder_model.save('model/decoder_model.h5')
+def test():
+    encoder_model = load_model('model/encoder_model.h5', compile=False)
+    decoder_model = load_model('model/decoder_model.h5', compile=False)
+    ss = "难以置信"
+    input_seq = np.zeros((1, max_encoder_seq_length, num_encoder_tokens))
+    for t, char in enumerate(ss):
+        input_seq[0, t, input_token_index[char]]=1.0
+    decoded_sentence = decode_sequence(input_seq, encoder_model, decoder_model)
+    return decoded_sentence
 
 
 
 if __name__ == '__main__':
-    train()
-    # 若生成模型model，则正确
+    pass
