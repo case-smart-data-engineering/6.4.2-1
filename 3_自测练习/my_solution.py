@@ -177,15 +177,17 @@ def train():
     raise NotImplementedError("补全代码块，编译模型")
     # 训练模型
     raise NotImplementedError("补全代码块，训练模型")
+    
 
 def test():
-    encoder_model = load_model('model/encoder_model.h5', compile=False)
-    decoder_model = load_model('model/decoder_model.h5', compile=False)
+    encoder_model = load_model('/workspace/6.5.2-1/model/encoder_model.h5', compile=False)
+    decoder_model = load_model('/workspace/6.5.2-1/model/decoder_model.h5', compile=False)
     ss = "难以置信"
     input_seq = np.zeros((1, max_encoder_seq_length, num_encoder_tokens))
     for t, char in enumerate(ss):
         input_seq[0, t, input_token_index[char]]=1.0
     decoded_sentence = decode_sequence(input_seq, encoder_model, decoder_model)
+    decoded_sentence = decoded_sentence.strip('\n')
     return decoded_sentence
 
 
