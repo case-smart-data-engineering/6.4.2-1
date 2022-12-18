@@ -9,7 +9,7 @@ batch_size = 64   # 一次训练所选取的样本数
 epochs = 500    # 训练轮数
 latent_dim = 256  # LSTM的单元个数
 num_samples = 3000   # 训练样本的大小
-data_path = '1_算法示例/new_datas.txt'   # 数据集路径
+data_path = '1_算法示例/data.txt'   # 数据集路径
 
 # 输入（源语言）序列，即输入的中文字符串
 input_texts = []
@@ -197,6 +197,8 @@ def train():
 def test():
     encoder_model = load_model('model/encoder_model.h5', compile=False)
     decoder_model = load_model('model/decoder_model.h5', compile=False)
+    # 提示：因为数据集太小，训练的模型在做测试时效果不好，故在输入要翻译的中文时应选择数据集中给出的句子，例如：难以置信、我爱中国等
+    # 若要翻译的是数据集外的句子，则会结束循环，程序运行结束
     ss = input("请输入要翻译的中文:")
     if ss == '-1':
         sys.exit()
