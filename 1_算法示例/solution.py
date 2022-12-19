@@ -191,7 +191,7 @@ def train():
 def test():
     encoder_model = load_model('model/encoder_model.h5', compile=False)
     decoder_model = load_model('model/decoder_model.h5', compile=False)
-    # 提示：因为数据量太少，翻译展示时尽量选用数据集中给出的句子，例如："难以置信"、"我爱中国"
+    # 提示：因为数据量太少，翻译展示时尽量选用数据集中给出的句子，例如："我爱中国"、"祝贺"、"我们成功啦"、"放轻松"等
     # 若输入'-1'，则会结束循环，程序运行结束
     ss = input("请输入要翻译的中文:")
     if ss == '-1':
