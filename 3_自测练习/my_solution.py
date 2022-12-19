@@ -182,7 +182,7 @@ def train():
 def test():
     encoder_model = load_model('/workspace/6.5.2-1/model/encoder_model.h5', compile=False)
     decoder_model = load_model('/workspace/6.5.2-1/model/decoder_model.h5', compile=False)
-    ss = "难以置信"
+    ss = "我爱中国"
     input_seq = np.zeros((1, max_encoder_seq_length, num_encoder_tokens))
     for t, char in enumerate(ss):
         input_seq[0, t, input_token_index[char]]=1.0
