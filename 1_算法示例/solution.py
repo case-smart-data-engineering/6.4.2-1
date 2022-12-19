@@ -187,7 +187,6 @@ def train():
               batch_size=batch_size,
               epochs=epochs,
               validation_split=0.1)
-   
 
 def test():
     encoder_model = load_model('model/encoder_model.h5', compile=False)
