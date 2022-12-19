@@ -8,7 +8,7 @@ def test_solution():
     result = test()
     
     # 正确答案
-    correct_solution = 'unbelievable'
+    correct_solution = 'i love China'
     
     # 程序求解结果
     assert correct_solution == result
