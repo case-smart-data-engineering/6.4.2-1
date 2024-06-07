@@ -9,7 +9,7 @@ batch_size = 64   # 一次训练所选取的样本数
 epochs = 1000    # 训练轮数
 latent_dim = 256  # LSTM的单元个数
 num_samples = 3000   # 训练样本的大小
-data_path = '1_算法示例/data.txt'   # 数据集路径
+data_path = '/workspace/6.5.2-1/1_算法示例/data.txt'   # 数据集路径
 
 # 输入（源语言）序列，即输入的中文字符串
 input_texts = []
@@ -187,6 +187,10 @@ def train():
               batch_size=batch_size,
               epochs=epochs,
               validation_split=0.1)
+    # 保存模型，方便测试使用
+    # model.save('model/s2s.h5')
+    # encoder_model.save('model/encoder_model.h5')
+    # decoder_model.save('model/decoder_model.h5')
 
 def test():
     encoder_model = load_model('model/encoder_model.h5', compile=False)
